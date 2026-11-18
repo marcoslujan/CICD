@@ -2,6 +2,8 @@ name: Hola Actions
 
 on:
   push:
+    branches:
+      - feature/*
   workflow_dispatch:
 
 permissions: {}
@@ -12,5 +14,7 @@ jobs:
     steps:
       - name: Saludar
         run: echo 'Hola desde GitHub Actions'
+      - name: Fallo controlado
+        run: exit 1
       - name: Mostrar fecha
         run: date
