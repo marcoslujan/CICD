@@ -1,4 +1,5 @@
 const [url, sha, seconds = '90'] = process.argv.slice(2);
+const variableSinUsar = 'error intencionado';
 if (!url || !sha) {
   console.error('Uso: node scripts/wait-for-version.js URL SHA [SEGUNDOS]');
   process.exit(2);
