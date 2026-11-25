@@ -1,4 +1,32 @@
-name: ci.yml
+name: CI
+
 on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Ejecutar linter
+        run: npm run lint
+      - name: Verificar el formato del código
+        run: npm run format:check
+      - name: Ejecutar tests
+        run: npm test:unit
