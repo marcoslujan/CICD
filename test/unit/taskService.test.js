@@ -7,7 +7,7 @@ test('recorta título y crea tarea', async () => {
   const service = createService(memoryRepository());
   const created = await service.create({ title: '  CI/CD  ' });
   assert.equal(created.title, 'CI/CD');
-  assert.equal((await service.list()).length, 2);
+  assert.equal((await service.list()).length, 1);
 });
 test('completa tarea y da 404 para la inexistente', async () => {
   const service = createService(memoryRepository());
