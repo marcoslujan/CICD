@@ -40,7 +40,7 @@ function createApp(repository) {
     }
   });
   app.get('/openapi.yaml', (req, res) => res.sendFile('openapi.yaml', { root: process.cwd() }));
-  app.use((err, req, res, next) =>
+  app.use((err, req, res) =>
     res.status(err.status || 500).json({ error: err.status ? err.message : 'Error interno' }),
   );
   return app;
